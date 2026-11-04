@@ -209,5 +209,15 @@ Consider, for example, concepts of fariness, inequality, social structures, marg
 
 
 ```
-Your thoughts...
+### Section 4: Ethics Values Embedded in Databases
+
+Databases are often considered objective tools for storing, organizing, and analyzing information. However, after reflecting on Qadri's article, *When Databases Get to Define Family*, I realized that databases are not entirely neutral. Their structures, categories, and rules reflect the assumptions and values of the people and institutions that design them. Although databases can improve efficiency and consistency, they may also reinforce existing social inequalities when their underlying assumptions fail to represent the diversity of real-world experiences.
+
+One example is healthcare databases. In clinical practice and medical research, electronic health records are widely used to document patients' demographic information, medical histories, diagnoses, and treatments. These systems often rely on standardized categories to facilitate data collection and analysis. However, rigid classifications may not adequately capture individual differences. For instance, patients with complex medical conditions may not fit neatly into predefined diagnostic categories. Furthermore, if certain populations are underrepresented in clinical datasets, predictive algorithms developed using these data may perform less accurately for those populations. This raises important concerns about fairness, representativeness, and equitable access to healthcare.
+
+Another example is immigration and identity verification systems. Immigration databases frequently require applicants to provide information about their nationality, marital status, education, and employment history using predefined categories. Although standardization is necessary for administrative efficiency, these categories may not fully reflect complex personal circumstances. For example, differences in educational systems across countries may make it difficult to classify foreign qualifications consistently. Similarly, family structures that do not align with predefined categories may encounter additional administrative barriers. This resembles the central issue discussed in Qadri's article, where the database's definition of family can influence individuals' access to legal recognition and public services.
+
+These examples demonstrate that database design is not merely a technical process but also a social responsibility. Decisions about which variables to collect, how categories are defined, and which relationships are permitted can have consequences beyond data management. Importantly, a technically accurate database does not necessarily guarantee a fair system if its underlying assumptions exclude certain individuals or communities.
+
+In my opinion, ethical database design should prioritize inclusivity, transparency, and flexibility. Developers should consider diverse populations during system development, regularly evaluate potential biases, and provide mechanisms for correcting inaccurate or incomplete information. Ultimately, databases should serve the complexity of human society rather than force individuals to conform to overly restrictive classifications.
 ```
