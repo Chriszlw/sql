@@ -57,7 +57,49 @@ The store wants to keep customer addresses. Propose two architectures for the CU
 **HINT:** search type 1 vs type 2 slowly changing dimensions. 
 
 ```
-Your answer...
+### Prompt 3: Customer Address Architecture
+
+There are two approaches to managing changes in customer addresses using Slowly Changing Dimensions (SCD).
+
+**Type 1 SCD — Overwriting Existing Addresses**
+
+In this approach, the `CUSTOMER_ADDRESS` table stores only the customer's current address. When a customer moves, the existing address is updated and the previous address is overwritten.
+
+The table could contain the following columns:
+
+- `address_id` (Primary Key)
+- `customer_id` (Foreign Key)
+- `street_address`
+- `city`
+- `province`
+- `postal_code`
+- `country`
+- `last_updated`
+
+This approach is simple and requires less storage. However, historical address information is permanently lost when an address is updated.
+
+**Type 2 SCD — Retaining Address History**
+
+In this approach, every address change creates a new record rather than overwriting the existing one. Previous addresses are retained to maintain a complete history.
+
+The table could contain:
+
+- `address_id` (Primary Key)
+- `customer_id` (Foreign Key)
+- `street_address`
+- `city`
+- `province`
+- `postal_code`
+- `country`
+- `effective_start_date`
+- `effective_end_date`
+- `is_current`
+
+When a customer changes their address, the previous record is marked as inactive by setting its end date and `is_current = FALSE`. A new record is inserted with the updated address and `is_current = TRUE`.
+
+Type 2 requires more storage and maintenance but allows the bookstore to track historical addresses, which may be useful for reviewing previous orders or understanding customer relocation patterns.
+
+**Conclusion:** Type 1 is appropriate when only the current address is needed, while Type 2 is preferable when historical address information must be preserved.
 ```
 
 ***
@@ -70,6 +112,7 @@ Steps to complete this part of the assignment:
 	- from [Github](./02_activities/assignments/assignment2.sql)
 	- or, from your local forked repository  
 - Complete each question, by writing responses between the QUERY # and END QUERY blocks
+- Some questions build on your earlier queries or tables. Keep track of the column names you use so you can reference them correctly in later questions.
 
 
 ### Write SQL
@@ -192,5 +235,17 @@ Consider, for example, concepts of labour, bias, LLM proliferation, moderating c
 
 
 ```
-Your thoughts...
+### Ethics: Neural Nets Are Just People All the Way Down
+
+Vicki Boykis's article, *Neural Nets Are Just People All the Way Down*, highlights an important misconception about artificial intelligence (AI): although AI systems appear to operate independently, their development relies heavily on human labour, decisions, and judgments. In my opinion, the article raises several important ethical concerns, particularly regarding labour exploitation, algorithmic bias, transparency, and accountability.
+
+**First, the invisible human labour behind AI development deserves greater recognition.** Boykis describes how ImageNet, a foundational dataset for computer vision, relied on thousands of individuals manually labelling images through platforms such as Amazon Mechanical Turk. Although these contributions were essential to the development of machine learning, workers often received minimal compensation and limited recognition. This raises questions about whether the economic benefits of AI are distributed fairly. Companies and researchers may receive significant financial and professional rewards, while the individuals responsible for preparing training datasets remain largely invisible. I believe that ethical AI development should include fair compensation, appropriate working conditions, and recognition of human contributions.
+
+**Second, human bias can become embedded in AI systems through training data.** The article discusses how datasets such as ImageNet contain categories and labels that reflect human judgments and social assumptions. Because these classifications are not necessarily objective, AI models trained on them may reproduce or amplify existing stereotypes. The ImageNet Roulette example demonstrates how automated classification can assign inappropriate or offensive labels to individuals. Such errors become particularly concerning when AI is applied to sensitive areas such as healthcare, employment, or criminal justice, where biased predictions could negatively affect people's lives.
+
+**Third, transparency and accountability are essential.** AI systems are frequently presented as objective technologies capable of making decisions without human intervention. However, Boykis demonstrates that even sophisticated neural networks depend on human choices made throughout the development process. Therefore, developers should be transparent about how training datasets are collected, labelled, and evaluated. When an AI system produces harmful or discriminatory outcomes, responsibility should not be attributed solely to the algorithm. The organizations and individuals responsible for designing and deploying these systems must also be accountable.
+
+Finally, these concerns have become increasingly relevant with the widespread adoption of large language models (LLMs). Although the article was published before the current proliferation of generative AI, its central argument remains applicable. LLMs also depend on human-generated content, human feedback, and decisions about which information should be included or excluded. Content moderation introduces additional ethical challenges because decisions about acceptable content may reflect particular cultural or social perspectives.
+
+Overall, I believe the most important message of this article is that **AI is not separate from society but is fundamentally shaped by it**. Developing ethical AI requires more than improving algorithms. It also requires protecting workers, addressing bias, ensuring transparency, and recognizing human responsibility throughout the entire development process.
 ```
